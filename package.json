@@ -16,7 +16,7 @@
   "scripts": {
     "start": "tsc && electron .",
     "build-renderer": "tsc",
-    "dist": "npm run build-renderer && electron-builder",
+    "dist": "npm run build-renderer && electron-builder"
   },
   "keywords": [
     "Ruscord",
