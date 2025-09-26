@@ -2,18 +2,19 @@
 
 Это неофициальный клиент и мы не имеем доступа к Ruscord-net, но если увидели уязвимости в ней то пишите к [Тех.поддержка Ruscord-net](support@ruscord.net)
 
-## Поддерживаемые версии
+## Поддерживаемые версии (Поддержка прекращена)
 
 | Версия | Поддерживается    |
-| ------ | ----------------- |        
-| 1.0.x  | :white_check_mark:|
+| ------ | ----------------- |
+| 1.2.x  | :x: |              
+| 1.0.x  | :x:               |
 
 ## Сообщение об уязвимости
 
-Если вы обнаружили уязвимость в клиенте который позволяет что-то сделать с ruscord.net то пожалуйста, сообщите нам:
+Если вы обнаружили уязвимость в клиенте который позволяет что-то сделать с russcord.ru то пожалуйста, сообщите нам:
 
-- По email: zapretsystem445@proton.me (dvytvs автор проекта, разработчик) или XZY@xyecoc.com (XZY123lol разработчик)
-- Или через [рекомендации по безопасности на GitHub](https://github.com/dvytvs/Ruscord-net-Linux/security/advisories)
+- По email: zapretsystem445@proton.me (dvytvs автор проекта, разработчик) или xzywww@proton.me (XZY123lol разработчик)
+- Или через [GitHub Security Advisories](https://github.com/dvytvs/Ruscord-net-Linux/security/advisories)
 
 Мы постараемся ответить быстро!
 
