@@ -17,7 +17,7 @@ export async function initWebRTC() {
     console.log("[WebRTC/info] поток инициализирован");
     return stream;
   } catch (err) {
-    console.error("[WebRTC/ERR] ошибка при инициализации:, err);
+    console.error("[WebRTC/ERR] ошибка при инициализации:", err);
     return null;
   }
 }
