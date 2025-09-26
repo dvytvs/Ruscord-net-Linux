@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=300, initial-scale=1, user-scalable=no" />
+  <title>Подключаем вас к Ruscord.NET...</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #121212;
+      color: white;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      user-select: none;
+      -webkit-app-region: drag;
+    }
+
+    .icon {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 20px;
+      animation: heartbeat 1.5s infinite;
+      -webkit-app-region: no-drag;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .status-text {
+      font-size: 16px;
+      margin-bottom: 20px;
+      text-align: center;
+      -webkit-app-region: no-drag;
+    }
+
+    .progress-wrapper {
+      width: 80%;
+      height: 12px;
+      background: #2c2c2c;
+      border-radius: 6px;
+      overflow: hidden;
+      display: none;
+      -webkit-app-region: no-drag;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: #555555;
+      border-radius: 6px;
+      transition: width 0.2s ease-out;
+    }
+
+    #cancelBtn {
+      margin-top: 10px;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      display: none;
+      -webkit-app-region: no-drag;
+    }
+  </style>
+</head>
+<body>
+  <img class="icon" src="../../Images/iconnobg.png" alt="Icon" />
+  <div class="status-text" id="status">Подключение к интернету...</div>
+  <div class="progress-wrapper">
+    <div class="progress-bar"></div>
+  </div>
+  <button id="cancelBtn">Отмена</button>
+
+  <script>
+    function formatBytes(bytes) {
+      const units = ['Б', 'КБ', 'МБ', 'ГБ', 'ТБ', 'ПТ'];
+      let i = 0;
+      let num = bytes;
+      while (num >= 1024 && i < units.length - 1) {
+        num /= 1024;
+        i++;
+      }
+      return `${num.toFixed(1)} ${units[i]}`;
+    }
+
+    const statusElem = document.getElementById('status');
+    const progressWrapper = document.querySelector('.progress-wrapper');
+    const progressBar = document.querySelector('.progress-bar');
+    const cancelBtn = document.getElementById('cancelBtn');
+
+    if (window.electron) {
+      window.electron.onStatus(text => {
+        statusElem.textContent = text;
+        if (text.includes('Скачано')) {
+          progressWrapper.style.display = 'block';
+          cancelBtn.style.display = 'inline-block';
+        } else if (text === 'Запуск...') {
+          progressWrapper.style.display = 'none';
+          cancelBtn.style.display = 'none';
+        }
+      });
+
+      window.electron.onProgress((downloaded, total, speed) => {
+        const percent = downloaded / total;
+        progressBar.style.width = `${Math.min(100, percent * 100)}%`;
+        statusElem.textContent = `Скачано ${formatBytes(downloaded)} из ${formatBytes(total)} (${formatBytes(speed)}/с)`;
+      });
+
+      cancelBtn.onclick = () => {
+        window.electron.send('cancel-download');
+      };
+    }
+  </script>
+</body>
+</html>
