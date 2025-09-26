@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Неофициальный Linux-клиент Ruscord.net на Electron",
   "homepage": "https://github.com/dvytvs/Ruscord-net-Linux",
-  "main": "main.ts",
+  "main": "main.js",
   "author": {
     "name": "dvytvs, XZY",
     "email": "zapretsystem445@proton.me",
