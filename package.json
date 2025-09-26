@@ -17,10 +17,10 @@
     "url": "https://github.com/dvytvs/Ruscord-net-Linux/issues"
   },
   "scripts": {
-    "start": "tsc && electron .",
+    "build-main": "tsc main.ts --outDir dist",
     "build-renderer": "tsc",
-    "dist": "npm run build-renderer && electron-builder"
-  },
+    "dist": "npm run build-main && npm run build-renderer && electron-builder"
+},
   "keywords": [
     "Ruscord",
     "Ruscord.Net",
