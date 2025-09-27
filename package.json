@@ -58,7 +58,7 @@
       "maintainer": "dvytvs <zapretsystem445@proton.me>",
       "synopsis": "Общайся и играй с друзьями в Ruscord",
       "asar": false,
-      "icon": "assets/Images/png/icon.png"
+      "icon": "assets/Images/png"
     }
   }
 }
