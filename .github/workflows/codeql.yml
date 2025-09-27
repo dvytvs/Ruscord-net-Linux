@@ -1,0 +1,36 @@
+
+name: "CodeQL Сканирование на безопастность"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '29 7 * * 4'
+
+jobs:
+  analyze:
+    name: Анализ TypeScript Electron
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+
+    steps:
+      - name: Checkout репозитория
+        uses: actions/checkout@v4
+
+      - name: Инициализация CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+          build-mode: none
+          queries: security-extended,security-and-quality
+
+      - name: Выполнение анализа CodeQL
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:javascript"
