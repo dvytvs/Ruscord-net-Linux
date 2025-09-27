@@ -1,10 +1,10 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, Menu } = require("electron");
 const path = require("path");
 
 // Включаем поддержку WebRTC и PipeWire (для демки)
 app.commandLine.appendSwitch("enable-features", "WebRTCPipeWireCapturer");
 app.commandLine.appendSwitch("enable-features", "WebRTC-H264WithOpenH264FFmpeg");
-app.commandLine.appendSwitch("use-fake-ui-for-media-stream", ""); // Временно убираем системное окно выбора
+app.commandLine.appendSwitch("use-fake-ui-for-media-stream", ""); // Временно убирать системное окно выбора
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -16,17 +16,17 @@ function createWindow() {
       contextIsolation: true,
       sandbox: false,
       webSecurity: true,
-      preload: path.join(__dirname, "assets", "code", "TypeScript", "WebRTC-preload.tsx"), // подключаем WebRTC скрипт
+      preload: path.join(__dirname, "assets", "code", "TypeScript", "WebRTC-preload.tsx"),
       enableBlinkFeatures: "WebRTC",
       webviewTag: true
     }
   });
 
-  // Загружаем сайт Ruscord.Net
-  mainWindow.loadURL("https://ruscord.net/");
+  // Убираем меню
+  Menu.setApplicationMenu(null);
 
-  // Открывать DevTools (можно закомментировать)
-  // mainWindow.webContents.openDevTools();
+  // Загружаем Ruscord.Net
+  mainWindow.loadURL("https://ruscord.net/");
 }
 
 app.whenReady().then(() => {
