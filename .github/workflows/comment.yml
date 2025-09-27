@@ -1,4 +1,4 @@
-name: Auto comment on new issues
+name: Автоматическое комментирование на новых проблем
 
 on:
   issues:
