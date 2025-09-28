@@ -10,7 +10,7 @@
 
 ## Сообщение об уязвимости
 
-Если вы обнаружили уязвимость в клиенте который позволяет что-то сделать с russcord.ru то пожалуйста, сообщите нам:
+Если вы обнаружили уязвимость в клиенте который позволяет что-то сделать с ruscord-net.ru то пожалуйста, сообщите нам:
 
 - По email: zapretsystem445@proton.me (dvytvs автор проекта, разработчик) или xzywww@proton.me (XZY123lol разработчик)
 - Или через [GitHub Security Advisories](https://github.com/dvytvs/Ruscord-net-Linux/security/advisories)
