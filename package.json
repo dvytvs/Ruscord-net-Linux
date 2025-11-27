@@ -1,0 +1,77 @@
+{
+  "name": "ruscord-net-linux",
+  "version": "1.1.0",
+  "description": "Неофициальный Linux-клиент Ruscord.net на Electron",
+  "homepage": "https://github.com/dvytvs/Ruscord-net-Linux",
+  "main": "main.js",
+  "author": {
+    "name": "dvytvs, XZY",
+    "email": "zapretsystem445@proton.me",
+    "url": "https://github.com/dvytvs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dvytvs/Ruscord-net-Linux.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dvytvs/Ruscord-net-Linux/issues"
+  },
+  "scripts": {
+    "build-main": "tsc main.ts --outDir dist",
+    "build-renderer": "tsc",
+    "dist": "npm run build-main && npm run build-renderer && electron-builder"
+  },
+  "keywords": [
+    "Ruscord",
+    "Ruscord.Net",
+    "Net",
+    "Electron",
+    "Linux",
+    "Client",
+    "Wayland",
+    "Discord"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "build": {
+    "appId": "net.ruscord",
+    "productName": "Ruscord.Net",
+    "copyright": "Copyright © 2025-2026 dvytvs, XZY — неофициальный клиент Ruscord.Net",
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "dist/**/*",
+      "assets/**/*",
+      "main.js"
+    ],
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm",
+        "tar.xz",
+        "pacman",
+        "snap"
+      ],
+      "category": "Network;Chat;",
+      "maintainer": "dvytvs <zapretsystem445@proton.me>",
+      "synopsis": "Общайся и играй с друзьями в Ruscord",
+      "description": "Неофициальный клиент с поддержкой демонстрации экрана (Wayland/X11)",
+      "asar": true,
+      "icon": "assets/Images/icon.png",
+      "executableArgs": [
+        "--ozone-platform-hint=auto"
+      ]
+    }
+  }
+}

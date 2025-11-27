@@ -1,0 +1,33 @@
+# Системные файлы
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.lock
+*~
+
+# Node
+node_modules/
+package-lock.json
+.cache/
+dist/
+build/
+out/
+release/
+tmp/
+*.asar
+
+# IDE
+.vscode/
+.idea/
+
+# Пакеты
+*.zip
+*.tar.gz
+*.AppImage
+*.deb
+*.rpm
+*.snap
+
+# Авто-обновление
+pending/
