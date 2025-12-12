@@ -1,0 +1,78 @@
+{
+  "name": "ruscord-net-linux",
+  "productName": "Ruscord Net",
+  "version": "1.1.0",
+  "description": "Electron wrapper for https://ruscord.net/ — оптимизирован для Linux (Wayland/Xorg) и разных DE.",
+  "author": "dvytvs <zapretsystem445@proton.me>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dvytvs/Ruscord-net-Linux.git"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "build": "electron-builder",
+    "dist": "electron-builder --linux"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^26.0.0",
+    "electron-builder": "^24.6.0"
+  },
+  "build": {
+    "appId": "net.ruscord.net.app",
+    "productName": "Ruscord Net",
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.html",
+      "renderer.js",
+      "build/**",
+      "node_modules/**",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "pacman",
+        "tar.gz"
+      ],
+      "category": "Network;InstantMessaging;",
+      "icon": "build/icons/linux"
+    },
+    "deb": {
+      "depends": [
+        "libasound2",
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils"
+      ]
+    },
+    "pacman": {
+      "depends": [
+        "libx11",
+        "libxcomposite",
+        "libxdamage",
+        "libxrandr"
+      ]
+    },
+    "extraResources": [
+      {
+        "from": "build/icons/",
+        "to": "icons",
+        "filter": ["**/*"]
+      }
+    ],
+    "publish": null
+  }
+}
+
