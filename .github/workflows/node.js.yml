@@ -1,0 +1,75 @@
+name: Ruscord-net Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-debian:
+    runs-on: ubuntu-latest
+    container:
+      image: debian:bullseye
+    permissions:
+      contents: read
+
+    steps:
+      - name: Обновление списка пакетов и установка базовых зависимостей с фиксом недостающих
+        run: |
+          apt-get update
+          apt-get install -y --fix-missing curl git ca-certificates binutils sudo rpm libarchive-tools
+          apt-get install -f --fix-missing
+      - name: Установка Node.js
+        run: |
+          curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+          apt-get install -y nodejs
+      - name: Клонирование репозитория
+        uses: actions/checkout@v4
+
+      - name: Установка npm-зависимостей
+        run: |
+          npm install -g npm@11
+          if [ -f package-lock.json ]; then
+            echo "Используем npm ci"
+            npm ci
+          else
+            echo "package-lock.json не найден, запускаем npm install"
+            npm install
+          fi
+      - name: Сборка приложения
+        run: npx electron-builder --linux --x64 --publish=never
+
+      - name: Загрузка артефактов (.deb)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ruscord-net-deb
+          path: dist/*.deb
+
+      - name: Загрузка артефактов (.rpm)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ruscord-net-rpm
+          path: dist/*.rpm
+
+      - name: Загрузка артефактов (.tar.xz)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ruscord-net-tarxz
+          path: dist/*.tar.xz
+
+      - name: Загрузка артефактов (.snap)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ruscord-net-snap
+          path: dist/*.snap
+
+      - name: Загрузка артефактов (.AppImage)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ruscord-net-appimage
+          path: dist/*.AppImage
+
+      - name: Загрузка артефактов (.pacman)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ruscord-net-pacman
+          path: dist/*.pacman
+        
