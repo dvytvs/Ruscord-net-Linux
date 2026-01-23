@@ -1,0 +1,89 @@
+{
+  "name": "ruscord-net-linux",
+  "productName": "Ruscord Net",
+  "version": "1.1.0",
+  "description": "Linux-обёртка для https://app.russcord.ru — оптимизирована под Wayland, GTK, Qt.",
+  "main": "main.js",
+  "homepage": "https://ruscord.net",
+  "author": "dvytvs <zapretsystem445@proton.me>",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "build": "electron-builder",
+    "dist": "electron-builder --linux"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "net.russcord.app",
+    "productName": "Ruscord-Net",
+    "asar": true,
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.html",
+      "build/**/*"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "pacman",
+        "tar.gz",
+        "snap"
+      ],
+      "category": "Network;InstantMessaging;",
+      "icon": "build/icons/linux",
+      "executableName": "ruscord-net"
+    },
+    "deb": {
+      "depends": [
+        "libasound2",
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0",
+        "libuuid1",
+        "libsecret-1-0"
+      ]
+    },
+    "pacman": {
+      "depends": [
+        "gtk3",
+        "nss",
+        "alsa-lib",
+        "at-spi2-atk",
+        "libnotify",
+        "libxss",
+        "libxtst",
+        "xdg-utils",
+        "libsecret"
+      ]
+    },
+    "snap": {
+      "confinement": "strict",
+      "grade": "stable",
+      "plugs": [
+        "home",
+        "network",
+        "audio-record",
+        "camera",
+        "desktop",
+        "desktop-legacy",
+        "wayland",
+        "x11"
+      ]
+    }
+  }
+}
