@@ -1,8 +1,8 @@
 {
   "name": "ruscord-net-linux",
   "productName": "Ruscord Net",
-  "version": "1.1.0",
-  "description": "Linux-обёртка для https://app.russcord.ru — оптимизирована под Wayland, GTK, Qt.",
+  "version": "2.0.0",
+  "description": "Russian analogue of Discord",
   "main": "main.js",
   "homepage": "https://ruscord.net",
   "author": "dvytvs <zapretsystem445@proton.me>",
@@ -38,7 +38,9 @@
         "deb",
         "pacman",
         "tar.gz",
-        "snap"
+        "snap",
+        "flatpak",
+        "rpm"
       ],
       "category": "Network;InstantMessaging;",
       "icon": "build/icons/linux",
@@ -71,6 +73,17 @@
         "libsecret"
       ]
     },
+    "rpm": {
+      "depends": [
+        "libalsa",
+        "libgtk+3",
+        "libnss",
+        "libXScrnSaver",
+        "libXtst",
+        "xdg-utils",
+        "libsecret"
+      ]
+    },
     "snap": {
       "confinement": "strict",
       "grade": "stable",
@@ -78,12 +91,18 @@
         "home",
         "network",
         "audio-record",
+        "audio-playback",
         "camera",
         "desktop",
         "desktop-legacy",
         "wayland",
         "x11"
       ]
+    },
+    "flatpak": {
+      "runtimeVersion": "25.08",
+      "base": "org.electronjs.Electron2.BaseApp",
+      "baseVersion": "25.08"
     }
   }
 }
